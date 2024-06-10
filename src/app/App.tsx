@@ -7,8 +7,9 @@ import { UserPage } from './screens/userPage';
 import { HomePage } from './screens/homePage';
 import { HomeNavbar } from './components/headers/HomeNavbar';
 import { OtherNavbar } from './components/headers/OtherNavbar';
-import { Footer } from './components/footer';
+import Footer from './components/footer';
 import '../css/app.css';
+import '../css/footer.css'
 
 function App() {
   const location = useLocation()
