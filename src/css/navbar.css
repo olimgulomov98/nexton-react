@@ -228,6 +228,12 @@
 
 /** Basket **/
 
+.card-icon {
+  background: #111828;
+  border-radius: 5px;
+  padding: 2px;
+}
+
 .basket-frame {
   position: relative;
   padding: 10px 4px 0px 4px;

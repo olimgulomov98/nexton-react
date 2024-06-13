@@ -44,6 +44,7 @@ export default function HomeNavbar() {
                 Help
               </NavLink>
             </Box>
+
             <Basket />
 
             {!authMember ? (
