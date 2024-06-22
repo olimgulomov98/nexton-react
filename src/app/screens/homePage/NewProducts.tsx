@@ -8,7 +8,7 @@ import { CssVarsProvider } from "@mui/joy";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import Divider from "../../components/divider";
 
-const newFaahion = [
+const newFashion = [
   { productName: "Cutlet", imagePath: "/img/image.png" },
   { productName: "Kebab", imagePath: "/img/image1.png" },
   { productName: "Kebab", imagePath: "/img/image2.png" },
@@ -23,8 +23,8 @@ export default function NewDishes() {
           <Box className="category-title">New Fashion</Box>
           <Stack className="cards-frame">
             <CssVarsProvider>
-              {newFaahion.length !== 0 ? (
-                newFaahion.map((ele, index) => {
+              {newFashion.length !== 0 ? (
+                newFashion.map((ele, index) => {
                   return (
                     <Card key={index} variant="outlined" className={"card"}>
                       <CardOverflow>

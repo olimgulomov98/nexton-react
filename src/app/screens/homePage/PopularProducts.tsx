@@ -19,7 +19,7 @@ export default function PopularProducts() {
     <div className="popular-products-frame">
       <Container>
         <Stack className="popular-section">
-          <Box className="category-title">Popular Clothes</Box>
+          <Box className="category-title">PopularClothes</Box>
           <Stack className="cards-frame">
             {list.length !== 0 ? (
               list.map((ele, index) => {

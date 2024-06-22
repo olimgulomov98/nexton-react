@@ -3,7 +3,7 @@ import PopularProducts from "./PopularProducts";
 import NewProducts from "./NewProducts";
 import Advertisement from "./Advertisement";
 import ActiveUsers from "./ActiveUsers";
-import Events from "./Events";
+import Article from "./Article";
 import "../../../css/home.css";
 
 export function HomePage() {
@@ -13,7 +13,7 @@ export function HomePage() {
       <NewProducts />
       <Advertisement />
       <ActiveUsers />
-      <Events />
+      <Article />
     </div>
   );
 }
