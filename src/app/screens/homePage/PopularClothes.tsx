@@ -14,12 +14,12 @@ const list = [
   { productName: "Kebab", imagePath: "/img/image3.png" },
 ];
 
-export default function PopularProducts() {
+export default function PopularClothes() {
   return (
     <div className="popular-products-frame">
       <Container>
         <Stack className="popular-section">
-          <Box className="category-title">PopularClothes</Box>
+          <Box className="category-title">Popular Clothes</Box>
           <Stack className="cards-frame">
             {list.length !== 0 ? (
               list.map((ele, index) => {

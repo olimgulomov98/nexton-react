@@ -4,6 +4,7 @@ import Card from "@mui/joy/Card";
 import { CssVarsProvider, Typography } from "@mui/joy";
 import CardOverflow from "@mui/joy/CardOverflow";
 import AspectRatio from "@mui/joy/AspectRatio";
+import ContactPhoneIcon from "@mui/icons-material/ContactPhone";
 
 const activeUsers = [
   { memberNick: "Martin", memberImage: "/img/martin.webp" },
@@ -33,6 +34,10 @@ export default function ActiveUsers() {
                       <CardOverflow className={"card-detail"}>
                         <Typography className={"member-nickname"}>
                           {ele.memberNick}
+                        </Typography>
+                        <Typography className={"member-phone"}>
+                          <ContactPhoneIcon sx={{ marginRight: "10px" }} />
+                          <span>2345423523</span>
                         </Typography>
                       </CardOverflow>
                     </Card>

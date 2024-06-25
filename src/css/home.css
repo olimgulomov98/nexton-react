@@ -3,7 +3,7 @@
   height: auto;
 }
 
-/** POPULAR DISHES **/
+/** POPULAR CLOTHES **/
 
 .homepage .popular-products-frame {
   width: 100%;
@@ -68,118 +68,142 @@
   color: #111828;
 }
 
-/** NEW PRODUCTS **/
+/** NEW FASHION **/
 
-.homepage .new-products-frame {
+.homepage .fashion-frame {
   width: 100%;
-  height: 605px;
+  height: 745px;
   background: #f8f8ff;
   display: flex;
+  margin-bottom: 30px;
 }
 
-.homepage .main {
-  margin-top: 45px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.homepage .new-products-frame .category-title {
+.homepage .fashion-frame .category-title {
   font-family: "Dancing Script";
   font-style: normal;
   font-weight: 700;
   font-size: 36px;
   line-height: 43px;
+  margin: 50px 0;
 }
 
-.homepage .new-products-frame .main .cards-frame {
+.homepage .fashion-frame .fashion-main {
+  position: relative;
   width: 100%;
-  margin: 47px 2px 2px 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.homepage .fashion-frame .fashion-main .fashion-info {
+  width: 100%;
+  height: 100%;
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.homepage .new-products-frame .main .card {
-  height: 335px;
-  width: 290px;
-  cursor: pointer;
+.homepage .fashion-frame .fashion-info .fashion-info-frame {
+  position: relative;
+  width: 500px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.homepage .new-products-frame .product-sale {
-  position: absolute;
-  margin-top: 10px;
-  z-index: 100;
-  width: 90px;
-  height: 30px;
+.homepage .fashion-frame .fashion-img {
+  width: 100%;
+  height: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #ff9200;
-  box-shadow: 4px 6px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 25px;
-  font-family: "Poppins";
+  border-radius: 10px;
+  background-size: cover;
+}
+
+.homepage .fashion-frame .fashion-desc {
+  position: absolute;
+  margin-bottom: 7px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  height: auto;
+  bottom: 5px;
+  box-shadow: 0px 40px 30px rgba(25, 25, 46, 0.04);
+  border-radius: 8px;
+  background: linear-gradient(rgb(228, 220, 220), rgb(195, 195, 184));
+}
+
+.homepage .fashion-frame .fashion-desc .fashion-desc-title {
+  font-family: "Dancing Script";
   font-style: normal;
   font-weight: 600;
-  font-size: 12px;
-  line-height: 21px;
-  color: #f8f8ff;
+  font-size: 24px;
+  line-height: 22px;
+  color: #111828;
 }
 
-.homepage .new-products-frame .product-detail {
-  width: auto;
-  height: 49%;
-  display: flex;
-  justify-content: center;
-  margin-top: -12px;
-  border-top: 1px solid;
-  border-color: #f8f8ff;
-  background-color: #fafbfb;
-}
-
-.homepage .new-products-frame .product-detail .info {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.homepage .new-products-frame .product-detail .title {
-  width: 65px;
-  font-weight: 500;
-}
-
-.homepage .new-products-frame .product-detail .price {
-  margin-left: 10px;
-  width: 20px;
-  font-weight: 500;
-}
-
-.homepage .new-products-frame .product-detail .divider {
-  margin: 0 10px 0 10px;
-  width: 2px;
-  background-color: #d9d9d9;
-}
-
-.homepage .new-products-frame .product-detail .views {
-  display: flex;
-  align-items: center;
-  font-weight: 500;
-}
-
-.homepage .new-products-frame .no-data {
-  width: 100%;
-  height: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-transform: capitalize;
+.homepage .fashion-frame .fashion-desc .fashion-desc-type {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
-  font-size: 30px;
-  line-height: 34px;
+  font-size: 20px;
+  line-height: 20px;
   color: #111828;
+  margin-top: 10px;
+}
+
+.homepage .fashion-frame .fashion-desc .fashion-desc-price {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 22px;
+  color: #111828;
+}
+
+.homepage .fashion-frame .fashion-desc .fashion-desc-views {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 20px;
+  color: #111828;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.homepage .fashion-frame .fashion-main .prev-next-frame {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  margin: 40px 0 40px 0;
+  height: 25px;
+}
+
+.homepage .fashion-frame .dot-frame-pagination {
+  position: relative;
+  width: auto;
+  display: flex;
+}
+
+.homepage .fashion-frame .swiper-pagination-bullet {
+  margin-right: 5px;
+  width: 8px;
+  height: 8px;
+  text-align: center;
+  opacity: 1;
+  background: #f8f8ff;
+  border-radius: 50%;
+}
+
+.homepage .fashion-frame .swiper-pagination-bullet-active {
+  background: #343434;
+  border-radius: 50%;
 }
 
 /** ADVERTISEMENT **/
@@ -256,6 +280,16 @@
   font-weight: 600;
   color: #000;
 }
+.homepage .active-users-frame .main .cards-frame .card .member-phone {
+  font-family: "Roboto Serif";
+  font-style: normal;
+  font-weight: 500;
+  color: #000;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
 
 .homepage .active-users-frame .no-data {
   width: 100%;
@@ -272,14 +306,21 @@
   color: #e3c08d;
 }
 
-/** EVENTS **/
+/** Article **/
 
 .article-frame {
   width: 100%;
-  height: 500px;
+  height: auto;
+  background: #f8f8ff;
+  display: flex;
+  justify-content: center;
+}
+
+.article-frame .article-main {
+  width: 100%;
+  height: auto;
   margin: 50px 0;
-  border: 1px solid;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 
 .article-frame .article-right {
@@ -305,7 +346,8 @@
 
 .article-frame .article-left {
   width: 50%;
-  height: 420px;
+  height: 440px;
   box-sizing: border-box;
   background: url("/public/img/bg-image.png");
+  background-repeat: no-repeat;
 }

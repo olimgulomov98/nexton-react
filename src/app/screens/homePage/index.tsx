@@ -1,6 +1,6 @@
 import React from "react";
-import PopularProducts from "./PopularProducts";
-import NewProducts from "./NewProducts";
+import PopularClothes from "./PopularClothes";
+import NewFashion from "./NewFashion";
 import Advertisement from "./Advertisement";
 import ActiveUsers from "./ActiveUsers";
 import Article from "./Article";
@@ -9,8 +9,8 @@ import "../../../css/home.css";
 export function HomePage() {
   return (
     <div className={"homepage"}>
-      <PopularProducts />
-      <NewProducts />
+      <PopularClothes />
+      <NewFashion />
       <Advertisement />
       <ActiveUsers />
       <Article />
