@@ -246,6 +246,7 @@
 }
 
 .basket-frame .all-check-box {
+  position: relative;
   padding: 0px 6px;
   width: 100%;
   height: 35px;
@@ -257,6 +258,12 @@
   border-style: solid;
   border-color: #343434;
   color: #fff;
+}
+
+.basket-frame .all-check-box .delete-icon {
+  position: absolute;
+  right: 15px;
+  cursor: pointer;
 }
 
 .basket-frame .basket-info-box {

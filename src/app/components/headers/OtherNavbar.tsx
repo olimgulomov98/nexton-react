@@ -1,13 +1,30 @@
 import { Box, Button, Container, Stack } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import Basket from "./Basket";
-import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
+import { CardItem } from "../../../libs/types/search";
 
-SwiperCore.use([Autoplay, Navigation, Pagination]);
+interface OtherNavbarProps {
+  cardItems: CardItem[];
+  onAdd: (item: CardItem) => void;
+  onRemove: (item: CardItem) => void;
+  onDelete: (item: CardItem) => void;
+  onDeleteAll: () => void;
+  setSignupOpen: (isOpen: boolean) => void;
+  setLoginOpen: (isOpen: boolean) => void;
+}
 
-export default function OtherNavbar() {
+export default function OtherNavbar(props: OtherNavbarProps) {
+  const {
+    cardItems,
+    onAdd,
+    onRemove,
+    onDelete,
+    onDeleteAll,
+    setSignupOpen,
+    setLoginOpen,
+  } = props;
   const authMember = null;
+
   return (
     <div className="other-navbar">
       <Container className="navbar-container">
@@ -41,15 +58,25 @@ export default function OtherNavbar() {
               </Box>
             ) : null}
             <Box className={"hover-line"}>
-              <NavLink to="/help" activeClassName={"underline"}>
-                Help
+              <NavLink to="/contact" activeClassName={"underline"}>
+                Contact
               </NavLink>
             </Box>
-            <Basket />
+            <Basket
+              cardItems={cardItems}
+              onAdd={onAdd}
+              onRemove={onRemove}
+              onDelete={onDelete}
+              onDeleteAll={onDeleteAll}
+            />
 
             {!authMember ? (
               <Box>
-                <Button variant="contained" className="login-button">
+                <Button
+                  variant="contained"
+                  className="login-button"
+                  onClick={() => setLoginOpen(true)}
+                >
                   Login
                 </Button>
               </Box>

@@ -11,7 +11,8 @@ export interface Product {
   productStatus: ProductStatus;
   productCollection: ProductCollection;
   productName: string;
-  productPrice: number;
+  productOrgPrice: number;
+  productDisPrice: number;
   productLeftCount: number;
   productSize: ProductSize;
   productShoeSize: ProductShoeSize;

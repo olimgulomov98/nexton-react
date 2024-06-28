@@ -35,7 +35,7 @@ export default function HomePage() {
         page: 1,
         limit: 4,
         order: "productViews",
-        productCollection: ProductCollection.MEN,
+        // productCollection: ProductCollection.MEN,
       })
       .then((data) => {
         setPopularClothes(data);
@@ -47,7 +47,7 @@ export default function HomePage() {
         page: 1,
         limit: 4,
         order: "createdAt",
-        productCollection: ProductCollection.MEN,
+        // productCollection: ProductCollection.MEN,
       })
       .then((data) => {
         setNewFashion(data);

@@ -68,7 +68,7 @@ export default function NewFashion() {
 
                     <div>
                       <Typography className={"fashion-desc-price"}>
-                        $ {product.productPrice}
+                        $ {product.productDisPrice}
                       </Typography>
                       <Typography className={"fashion-desc-views"}>
                         <VisibilityIcon

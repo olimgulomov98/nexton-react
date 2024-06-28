@@ -1,9 +1,32 @@
 import { Box, Button, Container, Stack } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import Basket from "./Basket";
+import { CardItem } from "../../../libs/types/search";
+import React, { useEffect, useState } from "react";
 
-export default function HomeNavbar() {
+interface HomeNavbarProps {
+  cardItems: CardItem[];
+  onAdd: (item: CardItem) => void;
+  onRemove: (item: CardItem) => void;
+  onDelete: (item: CardItem) => void;
+  onDeleteAll: () => void;
+  setSignupOpen: (isOpen: boolean) => void;
+  setLoginOpen: (isOpen: boolean) => void;
+}
+
+export default function HomeNavbar(props: HomeNavbarProps) {
+  const {
+    cardItems,
+    onAdd,
+    onRemove,
+    onDelete,
+    onDeleteAll,
+    setSignupOpen,
+    setLoginOpen,
+  } = props;
   const authMember = null;
+
+  /** HANDLERS **/
 
   return (
     <div className="home-navbar">
@@ -40,16 +63,26 @@ export default function HomeNavbar() {
               </Box>
             ) : null}
             <Box className={"hover-line"}>
-              <NavLink to="/help" activeClassName={"underline"}>
-                Help
+              <NavLink to="/contact" activeClassName={"underline"}>
+                Contact
               </NavLink>
             </Box>
 
-            <Basket />
+            <Basket
+              cardItems={cardItems}
+              onAdd={onAdd}
+              onRemove={onRemove}
+              onDelete={onDelete}
+              onDeleteAll={onDeleteAll}
+            />
 
             {!authMember ? (
               <Box>
-                <Button variant="contained" className="login-button">
+                <Button
+                  variant="contained"
+                  className="login-button"
+                  onClick={() => setLoginOpen(true)}
+                >
                   Login
                 </Button>
               </Box>
@@ -71,7 +104,11 @@ export default function HomeNavbar() {
             <Box className={"wel-txt"}>The Choice, not just a choice</Box>
             <Box className={"signup"}>
               {!authMember ? (
-                <Button variant={"contained"} className={"signup-button"}>
+                <Button
+                  variant={"contained"}
+                  className={"signup-button"}
+                  onClick={() => setSignupOpen(true)}
+                >
                   SIGN UP
                 </Button>
               ) : null}

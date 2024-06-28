@@ -6,12 +6,30 @@ import Menu from "@mui/material/Menu";
 import CancelIcon from "@mui/icons-material/Cancel";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useHistory } from "react-router-dom";
+import { CardItem } from "../../../libs/types/search";
+import { serverApi } from "../../../libs/config";
 
-export default function Basket() {
+interface BasketProps {
+  cardItems: CardItem[];
+  onAdd: (item: CardItem) => void;
+  onRemove: (item: CardItem) => void;
+  onDelete: (item: CardItem) => void;
+  onDeleteAll: () => void;
+}
+
+export default function Basket(props: BasketProps) {
+  const { cardItems, onAdd, onRemove, onDelete, onDeleteAll } = props;
   const authMember = null;
   const history = useHistory();
+  const itemsPrice: number = cardItems.reduce(
+    (a: number, c: CardItem) => a + c.quantity * c.disPrice,
+    0
+  );
+  const shippingCost: number = itemsPrice < 300 ? 5 : 0;
+  const totalPrice = (itemsPrice + shippingCost).toFixed(1);
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -34,7 +52,7 @@ export default function Basket() {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        <Badge badgeContent={3} color="primary">
+        <Badge badgeContent={cardItems.length} color="primary">
           <img
             src={"/icons/shopping-cart.svg"}
             alt=""
@@ -79,41 +97,68 @@ export default function Basket() {
       >
         <Stack className={"basket-frame"}>
           <Box className={"all-check-box"}>
-            <div>Card is empty!</div>
+            {cardItems.length === 0 ? (
+              <div>Card is empty!</div>
+            ) : (
+              <Stack flexDirection={"row"}>
+                <div>Card Products:</div>
+                <DeleteForeverIcon
+                  className="delete-icon"
+                  color={"primary"}
+                  onClick={() => onDeleteAll()}
+                />
+              </Stack>
+            )}
           </Box>
 
           <Box className={"orders-main-wrapper"}>
             <Box className={"orders-wrapper"}>
-              <Box className={"basket-info-box"}>
-                <img src={"/img/fresh.webp"} className={"product-img"} alt="" />
-                <span className={"product-name"}>Kebab</span>
-                <p className={"product-price"}>$10 x 1</p>
-                <Box sx={{ minWidth: 120 }}>
-                  <div className="col-2">
-                    <div className="remove">
-                      <RemoveCircleIcon />
-                    </div>{" "}
-                    <div className="add">
-                      <AddCircleIcon />
-                    </div>
-                    <div className={"cancel-btn"}>
-                      <CancelIcon color={"primary"} />
-                    </div>
-                  </div>
-                </Box>
-              </Box>
+              {cardItems.map((item: CardItem) => {
+                const imagePath = `${serverApi}/${item.image}`;
+                return (
+                  <Box className={"basket-info-box"} key={item._id}>
+                    <img src={imagePath} className={"product-img"} alt="" />
+                    <span className={"product-name"}>{item.name}</span>
+                    <p className={"product-price"}>
+                      ${item.disPrice} x {item.quantity}
+                    </p>
+                    <Box sx={{ minWidth: 120 }}>
+                      <div className="col-2">
+                        <div className="remove">
+                          <RemoveCircleIcon onClick={() => onRemove(item)} />
+                        </div>{" "}
+                        <div className="add">
+                          <AddCircleIcon onClick={() => onAdd(item)} />
+                        </div>
+                        <div className={"cancel-btn"}>
+                          <CancelIcon
+                            color={"primary"}
+                            onClick={() => onDelete(item)}
+                          />
+                        </div>
+                      </div>
+                    </Box>
+                  </Box>
+                );
+              })}
             </Box>
           </Box>
-          <Box className={"basket-order"}>
-            <span className={"price"}>Total: $100 (98 +2)</span>
-            <Button
-              startIcon={<ShoppingCartIcon />}
-              variant={"contained"}
-              color={"secondary"}
-            >
-              Order
-            </Button>
-          </Box>
+          {cardItems.length !== 0 ? (
+            <Box className={"basket-order"}>
+              <span className={"price"}>
+                Total: ${totalPrice} ({itemsPrice} + {shippingCost})
+              </span>
+              <Button
+                startIcon={<ShoppingCartIcon />}
+                variant={"contained"}
+                color={"secondary"}
+              >
+                Order
+              </Button>
+            </Box>
+          ) : (
+            " "
+          )}
         </Stack>
       </Menu>
     </Box>
