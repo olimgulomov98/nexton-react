@@ -11,7 +11,7 @@ export default function HomeNavbar() {
         <Stack className={"menu"}>
           <Box className={"brand-logo-cover"}>
             <NavLink to="/">
-              <img className="brand-logo" src="/icons/nextonLogo.svg" alt="" />
+              <img className="brand-logo" src="/img/logo.png" alt="" />
             </NavLink>
           </Box>
           <Stack className="links">

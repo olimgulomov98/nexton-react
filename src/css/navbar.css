@@ -16,15 +16,13 @@
   height: 50px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
 }
 
 .home-navbar .navbar-container .menu .brand-logo {
   width: 200px;
-  height: 40px;
-  background: #111828;
-  border-radius: 30px;
+  height: 60px;
+  margin-right: 80px;
 }
 
 .home-navbar .navbar-container .menu .links {
@@ -156,11 +154,13 @@
   display: flex;
   background: #111828;
   background-size: cover;
+  position: fixed;
+  z-index: 99;
 }
 
 .other-navbar .navbar-container {
   margin-top: 10px;
-  height: 70px;
+  height: 350px;
 }
 
 .other-navbar .navbar-container .menu {
@@ -252,10 +252,11 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  background: #d7b586;
+  background: #111828;
   border-width: 1px 0px;
   border-style: solid;
   border-color: #343434;
+  color: #fff;
 }
 
 .basket-frame .basket-info-box {
@@ -291,9 +292,9 @@
   font-family: "Poppins";
   font-style: normal;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 17px;
   line-height: 22px;
-  color: #ae0000;
+  color: #1429cb;
 }
 
 .basket-info-box
@@ -306,9 +307,13 @@
 }
 
 .basket-frame .cancel-btn {
-  position: absolute;
-  top: 33%;
-  right: 2%;
+  margin-left: 15px;
+}
+
+.basket-frame .col-2 {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5px;
   cursor: pointer;
 }
 

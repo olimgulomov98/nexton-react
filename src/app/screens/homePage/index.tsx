@@ -6,7 +6,7 @@ import ActiveUsers from "./ActiveUsers";
 import Article from "./Article";
 import "../../../css/home.css";
 
-export function HomePage() {
+export default function HomePage() {
   return (
     <div className={"homepage"}>
       <PopularClothes />

@@ -4,6 +4,8 @@ import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
 import Menu from "@mui/material/Menu";
 import CancelIcon from "@mui/icons-material/Cancel";
+import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useHistory } from "react-router-dom";
 
@@ -32,7 +34,7 @@ export default function Basket() {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        <Badge badgeContent={3} color="secondary">
+        <Badge badgeContent={3} color="primary">
           <img
             src={"/icons/shopping-cart.svg"}
             alt=""
@@ -77,22 +79,26 @@ export default function Basket() {
       >
         <Stack className={"basket-frame"}>
           <Box className={"all-check-box"}>
-            <div>Cart is empty!</div>
+            <div>Card is empty!</div>
           </Box>
 
           <Box className={"orders-main-wrapper"}>
             <Box className={"orders-wrapper"}>
               <Box className={"basket-info-box"}>
-                <div className={"cancel-btn"}>
-                  <CancelIcon color={"primary"} />
-                </div>
                 <img src={"/img/fresh.webp"} className={"product-img"} alt="" />
                 <span className={"product-name"}>Kebab</span>
                 <p className={"product-price"}>$10 x 1</p>
                 <Box sx={{ minWidth: 120 }}>
                   <div className="col-2">
-                    <button className="remove">-</button>{" "}
-                    <button className="add">+</button>
+                    <div className="remove">
+                      <RemoveCircleIcon />
+                    </div>{" "}
+                    <div className="add">
+                      <AddCircleIcon />
+                    </div>
+                    <div className={"cancel-btn"}>
+                      <CancelIcon color={"primary"} />
+                    </div>
                   </div>
                 </Box>
               </Box>
@@ -100,7 +106,11 @@ export default function Basket() {
           </Box>
           <Box className={"basket-order"}>
             <span className={"price"}>Total: $100 (98 +2)</span>
-            <Button startIcon={<ShoppingCartIcon />} variant={"contained"}>
+            <Button
+              startIcon={<ShoppingCartIcon />}
+              variant={"contained"}
+              color={"secondary"}
+            >
               Order
             </Button>
           </Box>

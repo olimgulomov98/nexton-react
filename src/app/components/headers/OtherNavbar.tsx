@@ -1,6 +1,10 @@
 import { Box, Button, Container, Stack } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import Basket from "./Basket";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
+
+SwiperCore.use([Autoplay, Navigation, Pagination]);
 
 export default function OtherNavbar() {
   const authMember = null;

@@ -1,170 +1,254 @@
-/* eslint-disable jsx-a11y/iframe-has-title */
-import { Badge, Box, Button, Container, Input, Stack } from "@mui/material";
+import React, { useState } from "react";
+import { Box, Button, Container, Menu, MenuItem, Stack } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import Pagination from "@mui/material/Pagination";
-import PaginationItem from "@mui/material/PaginationItem";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import SearchBar from "../../components/search";
-import { RemoveRedEye } from "@mui/icons-material";
+import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Autoplay, Navigation } from "swiper";
+
+SwiperCore.use([Autoplay, Navigation]);
 
 const products = [
-  { prooductName: "Cutlet", imgPath: "/img/cutlet.webp" },
-  { prooductName: "Kebab", imgPath: "/img/kebab-fresh.webp" },
-  { prooductName: "Kebab", imgPath: "/img/kebab.webp" },
-  { prooductName: "Lavash", imgPath: "/img/lavash.webp" },
-  { prooductName: "Lavash", imgPath: "/img/lavash.webp" },
-  { prooductName: "Cutlet", imgPath: "/img/cutlet.webp" },
-  { prooductName: "Kebab", imgPath: "/img/kebab.webp" },
-  { prooductName: "Kebab", imgPath: "/img/kebab-fresh.webp" },
+  { productName: "Cutlet", imagePath: "/img/cutlet.webp" },
+  { productName: "Kebak", imagePath: "/img/kebab-fresh.webp" },
+  { productName: "Kebak", imagePath: "/img/kebab.webp" },
+  { productName: "Lavash", imagePath: "/img/lavash.webp" },
+  { productName: "Lavash", imagePath: "/img/lavash.webp" },
+  { productName: "Cutlet", imagePath: "/img/cutlet.webp" },
+  { productName: "Kebab", imagePath: "/img/kebab.webp" },
+  { productName: "Kebab", imagePath: "/img/kebab-fresh.webp" },
 ];
 
 export default function Products() {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [sortingOpen, setSortingOpen] = useState(false);
+  const [filterSortName, setFilterSortName] = useState("New");
+
   return (
     <div className="products">
       <Container>
         <Stack flexDirection={"column"} alignItems={"center"}>
           <Stack className="avatar-big-box">
-            <Box className="top-text">Burak Restaurant</Box>
-            <div className="searchbar">
-              <SearchBar />
-            </div>
+            <Stack className="product-category">
+              <Button variant="contained" color="primary">
+                All
+              </Button>
+              <Button variant="contained" color="secondary">
+                Men
+              </Button>
+              <Button variant="contained" color="secondary">
+                Women
+              </Button>
+              <Button variant="contained" color="secondary">
+                Kids
+              </Button>
+              <Button variant="contained" color="secondary">
+                Shoes
+              </Button>
+            </Stack>
+            <Stack className="single-search">
+              <input className="single-search-input" placeholder="Type here" />
+              <Button
+                variant="contained"
+                color="secondary"
+                className="single-button-search"
+              >
+                search
+                <SearchIcon />
+              </Button>
+            </Stack>
           </Stack>
 
-          <Stack className="dishes-filter-section">
-            <Button variant="contained" color="primary" className="order">
-              New
-            </Button>
-            <Button variant="contained" color="secondary" className="order">
-              Price
-            </Button>
-            <Button variant="contained" color="secondary" className="order">
-              Views
-            </Button>
-          </Stack>
           <Stack className="list-category-section">
-            <Stack className="product-category">
-              <div className="category-main">
-                <Button variant="contained" color="secondary">
-                  Other
+            <Box className="top-text">Collections</Box>
+            <Box component={"div"} className={"right"}>
+              <span>Sort by</span>
+              <div>
+                <Button
+                  // onClick={sortingClickHandler}
+                  endIcon={<KeyboardArrowDownRoundedIcon />}
+                >
+                  {filterSortName}
                 </Button>
-                <Button variant="contained" color="secondary">
-                  Dessert
-                </Button>
-                <Button variant="contained" color="secondary">
-                  Drink
-                </Button>
-                <Button variant="contained" color="secondary">
-                  Salad
-                </Button>
-                <Button variant="contained" color="primary">
-                  Dish
-                </Button>
+                <Menu
+                  anchorEl={anchorEl}
+                  open={sortingOpen}
+                  // onClose={sortingCloseHandler}
+                  sx={{ paddingTop: "5px" }}
+                >
+                  <MenuItem
+                    id={"new"}
+                    disableRipple
+                    sx={{ boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px" }}
+                  >
+                    New
+                  </MenuItem>
+                  <MenuItem
+                    id={"lowest"}
+                    disableRipple
+                    sx={{ boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px" }}
+                  >
+                    Lowest Price
+                  </MenuItem>
+                  <MenuItem
+                    id={"highest"}
+                    disableRipple
+                    sx={{ boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px" }}
+                  >
+                    Highest Price
+                  </MenuItem>
+                </Menu>
               </div>
-            </Stack>
-            <div className="popular-dishes-frame">
-              <Container>
-                <Stack className="popular-section">
-                  <Stack className="cards-frame">
-                    {products.length !== 0 ? (
-                      products.map((ele, index) => {
-                        return (
-                          <Container className="card">
-                            <img
-                              className="product-img"
-                              src={ele.imgPath}
-                              alt=""
+            </Box>
+            <Stack className="products-wapper">
+              {products.length !== 0 ? (
+                products.map((product, index) => {
+                  return (
+                    <Stack key={index} className="product-card">
+                      <Stack
+                        className="product-img"
+                        sx={{
+                          background: `url(${product.imagePath})`,
+                        }}
+                      >
+                        <Button className="shop-btn">
+                          <img src={"/icons/shopping-cart.svg"} alt="" />
+                        </Button>
+                        {/* <Button className="view-btn">
+                          <Badge badgeContent={20} color="secondary">
+                            <RemoveRedEyeIcon
+                              sx={{
+                                color: 20 ? "white" : "gray",
+                              }}
                             />
-                            <div
-                              className="product-size"
-                              style={{ position: "absolute" }}
-                            >
-                              Normal size
-                            </div>
-                            <Button className="shop-btn">
-                              <img
-                                src={"/icons/shopping-cart.svg"}
-                                style={{ display: "flex" }}
-                                alt=""
-                              />
-                            </Button>
-                            <Button
-                              className="view-btn"
-                              sx={{ right: "36px", top: "180px" }}
-                            >
-                              <Badge badgeContent={20} color="secondary">
-                                <RemoveRedEye
-                                  sx={{
-                                    color: 20 ? "gray" : "white",
-                                  }}
-                                />
-                              </Badge>
-                            </Button>
-                            <Box className="food-name">
-                              <Box className="pro-name">{ele.prooductName}</Box>
-                              <div
-                                style={{
-                                  display: "flex",
-                                  flexDirection: "row",
-                                  alignItems: "center",
-                                }}
-                              >
-                                <img src="/icons/dollar.svg" alt="" />
-                                <div style={{ color: "#E3C08D" }}>15</div>
-                              </div>
-                            </Box>
-                          </Container>
-                        );
-                      })
-                    ) : (
-                      <Box className="no-data">Products are not available!</Box>
-                    )}
-                  </Stack>
-                </Stack>
-              </Container>
-            </div>
+                          </Badge>
+                        </Button> */}
+                      </Stack>
+                      <Box className="product-desc">
+                        <Box className="product-desc-top">
+                          <span className="product-title">
+                            {product.productName}
+                          </span>
+                          <div className="product-price">$18</div>
+                        </Box>
+                        <Box className="product-desc-top">
+                          <span className="product-type">Men</span>
+
+                          <div className="product-view">
+                            <RemoveRedEyeIcon
+                              color="secondary"
+                              sx={{
+                                marginRight: "2px",
+                                marginTop: "2px",
+                                fontSize: "18px",
+                              }}
+                            />
+                            15
+                          </div>
+                        </Box>
+                      </Box>
+                    </Stack>
+                  );
+                })
+              ) : (
+                <Box className="no-data">Product are not aviable!</Box>
+              )}
+            </Stack>
           </Stack>
           <Stack className="pagination-section">
-            <Pagination
-              count={3}
-              page={1}
-              renderItem={(item) => (
-                <PaginationItem
-                  components={{
-                    previous: ArrowBackIcon,
-                    next: ArrowForwardIcon,
-                  }}
-                  {...item}
-                  color="secondary"
-                />
-              )}
-            />
+            <Pagination count={3} page={1} color="secondary" />
           </Stack>
         </Stack>
       </Container>
-      <Stack className="family-brands">
-        <Container className="brands-wrapper">
-          <Box className="brands-text">Our Family Brands</Box>
-          <div className="brands-img-wrapper">
-            <img className="brands-img" src="/img/gurme.webp" alt="" />
-            <img className="brands-img" src="/img/seafood.webp" alt="" />
-            <img className="brands-img" src="/img/sweets.webp" alt="" />
-            <img className="brands-img" src="/img/doner.webp" alt="" />
-          </div>
-        </Container>
-      </Stack>
-      <div className="address">
-        <Container>
-          <Stack className="address-area">
-            <Box className="title">Our Address</Box>
-            <iframe
-              style={{ marginTop: "60px", width: "100%" }}
-              src="https://maps.google.com/maps?q=Burak%20restaurand%20istanbul&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
-              width={"1320"}
-              height={"500"}
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </Stack>
-        </Container>
+
+      <div className="branch-wrapper">
+        <Box className="branch-text">Our Branchs</Box>
+        <Stack className={"branch-main"}>
+          <Swiper
+            className={"branch-info swiper-wrapper"}
+            slidesPerView={"auto"}
+            centeredSlides={true}
+            spaceBetween={30}
+            navigation={{
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            }}
+            // pagination={{
+            //   el: ".swiper-pagination",
+            //   clickable: true,
+            // }}
+            autoplay={{
+              delay: 2000,
+              disableOnInteraction: true,
+            }}
+          >
+            <SwiperSlide className={"branch-info-frame"}>
+              <div className={"branch-img"}>
+                <img src="/img/store1.jpg" className={"branch-img"} alt="" />
+              </div>
+              <Box className={"branch-desc"}>
+                <strong>NEXTON</strong>
+                <p className={"text-desc"}>
+                  {" "}
+                  This Branch is one of the best seller.{" "}
+                </p>
+                <div className={"branch-info-main"}>
+                  <img src={"/icons/location.svg"} alt="" />
+                  London, United Kingdom
+                </div>
+              </Box>
+            </SwiperSlide>
+            <SwiperSlide className={"branch-info-frame"}>
+              <div className={"branch-img"}>
+                <img src="/img/store2.jpg" className={"branch-img"} alt="" />
+              </div>
+              <Box className={"branch-desc"}>
+                <strong>NEXTON</strong>
+                <p className={"text-desc"}>
+                  {" "}
+                  This Branch has more costumer than other branch.{" "}
+                </p>
+                <div className={"branch-info-main"}>
+                  <img src={"/icons/location.svg"} alt="" />
+                  Tashkent, Uzbekistan
+                </div>
+              </Box>
+            </SwiperSlide>
+            <SwiperSlide className={"branch-info-frame"}>
+              <div className={"branch-img"}>
+                <img src="/img/store3.jpg" className={"branch-img"} alt="" />
+              </div>
+              <Box className={"branch-desc"}>
+                <strong>NEXTON</strong>
+                <p className={"text-desc"}>
+                  {" "}
+                  This Branch has the most expansive collections.{" "}
+                </p>
+                <div className={"branch-info-main"}>
+                  <img src={"/icons/location.svg"} alt="" />
+                  Dubai, United Arab Emirates
+                </div>
+              </Box>
+            </SwiperSlide>
+            <SwiperSlide className={"branch-info-frame"}>
+              <div className={"branch-img"}>
+                <img src="/img/store4.jpg" className={"branch-img"} alt="" />
+              </div>
+              <Box className={"branch-desc"}>
+                <strong>NEXTON</strong>
+                <p className={"text-desc"}>
+                  {" "}
+                  There are the most new fashion collections in this brand.{" "}
+                </p>
+                <div className={"branch-info-main"}>
+                  <img src={"/icons/location.svg"} alt="" />
+                  Rim, Italy
+                </div>
+              </Box>
+            </SwiperSlide>
+          </Swiper>
+        </Stack>
       </div>
     </div>
   );
