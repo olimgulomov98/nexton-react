@@ -8,8 +8,8 @@ export interface AppRootState {
 
 /** HOME PAGE **/
 export interface HomePageState {
-  popularDishes: Product[];
-  newDishes: Product[];
+  popularClothes: Product[];
+  newFashion: Product[];
   topUsers: Member[];
 }
 

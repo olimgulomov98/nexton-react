@@ -7,27 +7,35 @@ import Typography from "@mui/joy/Typography";
 import { CssVarsProvider } from "@mui/joy";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
-const list = [
-  { productName: "Lavash", imagePath: "/img/image.png" },
-  { productName: "Cutlet", imagePath: "/img/image1.png" },
-  { productName: "Kebab", imagePath: "/img/image2.png" },
-  { productName: "Kebab", imagePath: "/img/image3.png" },
-];
+import { useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { retrievePopularClothes } from "./selector";
+import { Product } from "../../../libs/types/product";
+import { serverApi } from "../../../libs/config";
+
+/** REDUX SLICE & SELECTOR **/
+const popularClothesRetriever = createSelector(
+  retrievePopularClothes,
+  (popularClothes) => ({ popularClothes })
+);
 
 export default function PopularClothes() {
+  const { popularClothes } = useSelector(popularClothesRetriever);
+
   return (
     <div className="popular-products-frame">
       <Container>
         <Stack className="popular-section">
           <Box className="category-title">Popular Clothes</Box>
           <Stack className="cards-frame">
-            {list.length !== 0 ? (
-              list.map((ele, index) => {
+            {popularClothes.length !== 0 ? (
+              popularClothes.map((product: Product) => {
+                const imagePath = `${serverApi}/${product.productImages[0]}`;
                 return (
-                  <CssVarsProvider key={index}>
+                  <CssVarsProvider key={product._id}>
                     <Card className={"card"}>
                       <CardCover>
-                        <img src={ele.imagePath} alt="" />
+                        <img src={imagePath} alt="" />
                       </CardCover>
                       <CardCover className={"card-cover"} />
                       <CardContent sx={{ justifyContent: "flex-end" }}>
@@ -41,7 +49,7 @@ export default function PopularClothes() {
                             textColor="#fff"
                             mb={1}
                           >
-                            {ele.productName}
+                            {product.productName}
                           </Typography>
                           <Typography
                             sx={{
@@ -51,7 +59,7 @@ export default function PopularClothes() {
                               display: "flex",
                             }}
                           >
-                            20
+                            {product.productViews}
                             <VisibilityIcon
                               sx={{ fontSize: 25, marginLeft: "5px" }}
                             />
@@ -63,7 +71,7 @@ export default function PopularClothes() {
                 );
               })
             ) : (
-              <Box className="no-data">Popular Dishes is not available!</Box>
+              <Box className="no-data">Popular Clothes are not available!</Box>
             )}
           </Stack>
         </Stack>

@@ -5,16 +5,23 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
 
+import { useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { retrieveNewFashion } from "./selector";
+import { Product } from "../../../libs/types/product";
+import { serverApi } from "../../../libs/config";
+
 SwiperCore.use([Autoplay, Navigation, Pagination]);
 
-const newFashion = [
-  { productName: "Cutlet", imagePath: "/img/image.png" },
-  { productName: "Kebab", imagePath: "/img/image1.png" },
-  { productName: "Kebab", imagePath: "/img/image2.png" },
-  { productName: "Lavash", imagePath: "/img/image3.png" },
-];
+/** REDUX SLICE & SELECTOR **/
+const NewFashionRetriever = createSelector(
+  retrieveNewFashion,
+  (newFashion) => ({ newFashion })
+);
 
 export default function NewFashion() {
+  const { newFashion } = useSelector(NewFashionRetriever);
+
   return (
     <div className={"fashion-frame"}>
       <Stack className={"fashion-main"}>
@@ -40,39 +47,46 @@ export default function NewFashion() {
             disableOnInteraction: true,
           }}
         >
-          {newFashion.map((value, number) => {
-            return (
-              <SwiperSlide key={number} className={"fashion-info-frame"}>
-                <div className={"fashion-img"}>
-                  <img src={value.imagePath} className={"fashion-img"} alt="" />
-                </div>
-
-                <Box className={"fashion-desc"}>
-                  <div>
-                    <Typography className={"fashion-desc-title"}>
-                      {value.productName}
-                    </Typography>
-                    <Typography className={"fashion-desc-type"}>Men</Typography>
+          {newFashion.length !== 0 ? (
+            newFashion.map((product: Product) => {
+              const imagePath = `${serverApi}/${product.productImages[0]}`;
+              return (
+                <SwiperSlide key={product._id} className={"fashion-info-frame"}>
+                  <div className={"fashion-img"}>
+                    <img src={imagePath} className={"fashion-img"} alt="" />
                   </div>
 
-                  <div>
-                    <Typography className={"fashion-desc-price"}>
-                      $ 12
-                    </Typography>
-                    <Typography className={"fashion-desc-views"}>
-                      20
-                      <VisibilityIcon
-                        sx={{
-                          fontSize: 22,
-                          marginLeft: "5px",
-                        }}
-                      />
-                    </Typography>
-                  </div>
-                </Box>
-              </SwiperSlide>
-            );
-          })}
+                  <Box className={"fashion-desc"}>
+                    <div>
+                      <Typography className={"fashion-desc-title"}>
+                        {product.productName}
+                      </Typography>
+                      <Typography className={"fashion-desc-type"}>
+                        {product.productCollection}
+                      </Typography>
+                    </div>
+
+                    <div>
+                      <Typography className={"fashion-desc-price"}>
+                        $ {product.productPrice}
+                      </Typography>
+                      <Typography className={"fashion-desc-views"}>
+                        <VisibilityIcon
+                          sx={{
+                            fontSize: 22,
+                            marginLeft: "5px",
+                          }}
+                        />
+                        {product.productViews}
+                      </Typography>
+                    </div>
+                  </Box>
+                </SwiperSlide>
+              );
+            })
+          ) : (
+            <Box className="no-data">New Fashion is not available!</Box>
+          )}
         </Swiper>
         <Box className={"prev-next-frame"}>
           <img
