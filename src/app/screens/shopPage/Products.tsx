@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ChangeEvent } from "react";
+import React, { useState, useEffect, MouseEvent, ChangeEvent } from "react";
 import {
   Box,
   Button,
@@ -46,6 +46,9 @@ export default function Products(props: ProductsProps) {
   const { onAdd } = props;
   const { setProducts } = actionDispatch(useDispatch());
   const { products } = useSelector(productsRetriever);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [sortingOpen, setSortingOpen] = useState(false);
+  const [filterSortName, setFilterSortName] = useState("New");
 
   const [productSearch, setProductSearch] = useState<ProductInquiry>({
     page: 1,
@@ -81,12 +84,6 @@ export default function Products(props: ProductsProps) {
     setProductSearch({ ...productSearch });
   };
 
-  const searchOrderHandler = (order: string) => {
-    productSearch.page = 1;
-    productSearch.order = order;
-    setProductSearch({ ...productSearch });
-  };
-
   const searchProductHandler = () => {
     productSearch.search = searchText;
     setProductSearch({ ...productSearch });
@@ -101,13 +98,51 @@ export default function Products(props: ProductsProps) {
     history.push(`/shop/${id}`);
   };
 
+  const sortingClickHandler = (e: MouseEvent<HTMLElement>) => {
+    setAnchorEl(e.currentTarget);
+    setSortingOpen(true);
+  };
+
+  const sortingCloseHandler = () => {
+    setSortingOpen(false);
+    setAnchorEl(null);
+  };
+
+  const sortingHandler = (e: React.MouseEvent<HTMLLIElement>) => {
+    switch (e.currentTarget.id) {
+      case "new":
+        setProductSearch({ ...productSearch, order: "createdAt" });
+        setFilterSortName("New");
+        break;
+      case "price":
+        setProductSearch({ ...productSearch, order: "productDisPrice" });
+        setFilterSortName("Price");
+        break;
+      case "views":
+        setProductSearch({ ...productSearch, order: "productViews" });
+        setFilterSortName("Views");
+    }
+    setSortingOpen(false);
+    setAnchorEl(null);
+  };
+
   return (
     <div className="products">
       <Container>
         <Stack flexDirection={"column"} alignItems={"center"}>
           <Stack className="avatar-big-box">
             <Stack className="product-category">
-              <Button variant="contained" color="primary">
+              <Button
+                variant="contained"
+                color={
+                  productSearch.productCollection !== ProductCollection.MEN &&
+                  productSearch.productCollection !== ProductCollection.WOMEN &&
+                  productSearch.productCollection !== ProductCollection.KIDS &&
+                  productSearch.productCollection !== ProductCollection.SHOES
+                    ? "primary"
+                    : "secondary"
+                }
+              >
                 All
               </Button>
               <Button
@@ -178,43 +213,52 @@ export default function Products(props: ProductsProps) {
               </Button>
             </Stack>
           </Stack>
-          <Stack className="dishes-filter-section">
-            <Button
-              variant={"contained"}
-              className="order"
-              color={
-                productSearch.order === "createdAt" ? "primary" : "secondary"
-              }
-              onClick={() => searchOrderHandler("createdAt")}
-            >
-              New
-            </Button>
-            <Button
-              variant={"contained"}
-              className="order"
-              color={
-                productSearch.order === "productDisPrice"
-                  ? "primary"
-                  : "secondary"
-              }
-              onClick={() => searchOrderHandler("productDisPrice")}
-            >
-              Price
-            </Button>
-            <Button
-              variant={"contained"}
-              className="order"
-              color={
-                productSearch.order === "productViews" ? "primary" : "secondary"
-              }
-              onClick={() => searchOrderHandler("productViews")}
-            >
-              Views
-            </Button>
-          </Stack>
 
           <Stack className="list-category-section">
             <Box className="top-text">Collections</Box>
+
+            <Box className="product-sort">
+              <span>Sort By</span>
+              <div>
+                <Button
+                  onClick={sortingClickHandler}
+                  endIcon={<KeyboardArrowDownRoundedIcon />}
+                >
+                  {filterSortName}
+                </Button>
+                <Menu
+                  anchorEl={anchorEl}
+                  open={sortingOpen}
+                  onClose={sortingCloseHandler}
+                >
+                  <MenuItem
+                    onClick={sortingHandler}
+                    id={"new"}
+                    disableRipple
+                    sx={{ boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px" }}
+                  >
+                    New
+                  </MenuItem>
+                  <MenuItem
+                    onClick={sortingHandler}
+                    id={"price"}
+                    disableRipple
+                    sx={{ boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px" }}
+                  >
+                    Price
+                  </MenuItem>
+                  <MenuItem
+                    onClick={sortingHandler}
+                    id={"views"}
+                    disableRipple
+                    sx={{ boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px" }}
+                  >
+                    Views
+                  </MenuItem>
+                </Menu>
+              </div>
+            </Box>
+
             <Stack className="products-wapper">
               {products.length !== 0 ? (
                 products.map((product: Product) => {
@@ -270,8 +314,7 @@ export default function Products(props: ProductsProps) {
                           <div className="product-view">
                             <RemoveRedEyeIcon
                               sx={{
-                                color:
-                                  product.productViews === 0 ? "gray" : "white",
+                                color: "gray",
                                 marginRight: "2px",
                                 marginTop: "2px",
                                 fontSize: "18px",
