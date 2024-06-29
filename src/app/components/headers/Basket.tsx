@@ -10,7 +10,10 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useHistory } from "react-router-dom";
 import { CardItem } from "../../../libs/types/search";
-import { serverApi } from "../../../libs/config";
+import { Messages, serverApi } from "../../../libs/config";
+import OrderService from "../../services/OrderService";
+import { sweetErrorHandling } from "../../../libs/sweetAlert";
+import { useGlobals } from "../../hooks/useGlobal";
 
 interface BasketProps {
   cardItems: CardItem[];
@@ -22,13 +25,13 @@ interface BasketProps {
 
 export default function Basket(props: BasketProps) {
   const { cardItems, onAdd, onRemove, onDelete, onDeleteAll } = props;
-  const authMember = null;
+  const { authMember, setOrderBuilder } = useGlobals();
   const history = useHistory();
   const itemsPrice: number = cardItems.reduce(
     (a: number, c: CardItem) => a + c.quantity * c.disPrice,
     0
   );
-  const shippingCost: number = itemsPrice < 300 ? 5 : 0;
+  const shippingCost: number = itemsPrice < 300 ? 10 : 0;
   const totalPrice = (itemsPrice + shippingCost).toFixed(1);
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -40,6 +43,24 @@ export default function Basket(props: BasketProps) {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const proceedOrderHandler = async () => {
+    try {
+      handleClose();
+      if (!authMember) throw new Error(Messages.error2);
+
+      const order = new OrderService();
+      await order.createOrder(cardItems);
+
+      onDeleteAll();
+
+      setOrderBuilder(new Date());
+      history.push("/orders");
+    } catch (err) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
   };
 
   return (
@@ -149,6 +170,7 @@ export default function Basket(props: BasketProps) {
                 Total: ${totalPrice} ({itemsPrice} + {shippingCost})
               </span>
               <Button
+                onClick={proceedOrderHandler}
                 startIcon={<ShoppingCartIcon />}
                 variant={"contained"}
                 color={"secondary"}

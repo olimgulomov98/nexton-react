@@ -51,7 +51,7 @@ export default function Products(props: ProductsProps) {
     page: 1,
     limit: 8,
     order: "createAt",
-    // productCollection: ProductCollection.MEN,
+    // productCollection: ProductCollection.WOMEN,
     search: "",
   });
 
@@ -61,16 +61,10 @@ export default function Products(props: ProductsProps) {
   useEffect(() => {
     const product = new ProductService();
     product
-      .getProducts({
-        page: 1,
-        limit: 8,
-        order: "createAt",
-        // productCollection: ProductCollection.MEN,
-        search: "",
-      })
+      .getProducts(productSearch)
       .then((data) => setProducts(data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [productSearch]);
 
   useEffect(() => {
     if (searchText === "") {
@@ -87,11 +81,11 @@ export default function Products(props: ProductsProps) {
     setProductSearch({ ...productSearch });
   };
 
-  // const searchOrderHandler = (order: string) => {
-  //   productSearch.page = 1;
-  //   productSearch.order = order;
-  //   setProductSearch({ ...productSearch });
-  // };
+  const searchOrderHandler = (order: string) => {
+    productSearch.page = 1;
+    productSearch.order = order;
+    setProductSearch({ ...productSearch });
+  };
 
   const searchProductHandler = () => {
     productSearch.search = searchText;
@@ -183,6 +177,40 @@ export default function Products(props: ProductsProps) {
                 <SearchIcon />
               </Button>
             </Stack>
+          </Stack>
+          <Stack className="dishes-filter-section">
+            <Button
+              variant={"contained"}
+              className="order"
+              color={
+                productSearch.order === "createdAt" ? "primary" : "secondary"
+              }
+              onClick={() => searchOrderHandler("createdAt")}
+            >
+              New
+            </Button>
+            <Button
+              variant={"contained"}
+              className="order"
+              color={
+                productSearch.order === "productDisPrice"
+                  ? "primary"
+                  : "secondary"
+              }
+              onClick={() => searchOrderHandler("productDisPrice")}
+            >
+              Price
+            </Button>
+            <Button
+              variant={"contained"}
+              className="order"
+              color={
+                productSearch.order === "productViews" ? "primary" : "secondary"
+              }
+              onClick={() => searchOrderHandler("productViews")}
+            >
+              Views
+            </Button>
           </Stack>
 
           <Stack className="list-category-section">

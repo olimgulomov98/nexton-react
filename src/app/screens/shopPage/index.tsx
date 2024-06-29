@@ -1,14 +1,14 @@
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import Products from "./Products";
 import ChosenProduct from "./ChosenProduct";
-import "../../../css/products.css";
 import { CardItem } from "../../../libs/types/search";
+import "../../../css/products.css";
 
 interface ProductsPageProps {
   onAdd: (item: CardItem) => void;
 }
 
-export default function ProductsPage(props: ProductsPageProps) {
+export default function ShopPage(props: ProductsPageProps) {
   const { onAdd } = props;
   const products = useRouteMatch();
   return (

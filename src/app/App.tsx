@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
-import ProductsPage from "./screens/shopPage";
+import ShopPage from "./screens/shopPage";
 import OrdersPage from "./screens/ordersPage";
 import ContactPage from "./screens/contactPage";
 import UserPage from "./screens/userPage";
@@ -13,17 +13,41 @@ import AuthenticationModal from "./components/auth";
 import "../css/app.css";
 import "../css/navbar.css";
 import "../css/footer.css";
+import { useGlobals } from "./hooks/useGlobal";
+import MemberService from "./services/MemberService";
+import { sweetErrorHandling, sweetTopSuccessAlert } from "../libs/sweetAlert";
+import { Messages } from "../libs/config";
 
 function App() {
   const location = useLocation();
+  const { setAuthMember } = useGlobals();
   const { cardItems, onAdd, onRemove, onDelete, onDeleteAll } = useBasket();
   const [signupOpen, setSignupOpen] = useState<boolean>(false);
   const [loginOpen, setLoginOpen] = useState<boolean>(false);
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
   /** HANDLERS **/
 
   const handleSignupClose = () => setSignupOpen(false);
   const handleLoginClose = () => setLoginOpen(false);
+
+  const handleLogoutClick = (e: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(e.currentTarget);
+  };
+
+  const handleCloseLogout = () => setAnchorEl(null);
+  const handleLogoutRequest = async () => {
+    try {
+      const member = new MemberService();
+      await member.logout();
+
+      await sweetTopSuccessAlert("success", 700);
+      setAuthMember(null);
+    } catch (err) {
+      console.log(err);
+      sweetErrorHandling(Messages.error1);
+    }
+  };
 
   return (
     <>
@@ -36,6 +60,10 @@ function App() {
           onDeleteAll={onDeleteAll}
           setSignupOpen={setSignupOpen}
           setLoginOpen={setLoginOpen}
+          anchorEl={anchorEl}
+          handleLogoutClick={handleLogoutClick}
+          handleCloseLogout={handleCloseLogout}
+          handleLogoutRequest={handleLogoutRequest}
         />
       ) : (
         <OtherNavbar
@@ -46,11 +74,15 @@ function App() {
           onDeleteAll={onDeleteAll}
           setSignupOpen={setSignupOpen}
           setLoginOpen={setLoginOpen}
+          anchorEl={anchorEl}
+          handleLogoutClick={handleLogoutClick}
+          handleCloseLogout={handleCloseLogout}
+          handleLogoutRequest={handleLogoutRequest}
         />
       )}
       <Switch>
         <Route path="/shop">
-          <ProductsPage onAdd={onAdd} />
+          <ShopPage onAdd={onAdd} />
         </Route>
         <Route path="/orders">
           <OrdersPage />
