@@ -104,6 +104,14 @@ export default function ChosenProduct(props: ChosenProductProps) {
                 </div>
               </div>
             </Box>
+            <Button className="product-size">
+              {chosenProduct.productCollection === "KIDS"
+                ? chosenProduct.productKidsSize
+                : chosenProduct.productSize &&
+                  chosenProduct.productCollection === "SHOES"
+                ? chosenProduct.productShoeSize
+                : chosenProduct.productSize}
+            </Button>
             <p className={"product-desc"}>
               {chosenProduct?.productDesc
                 ? chosenProduct?.productDesc
@@ -132,6 +140,10 @@ export default function ChosenProduct(props: ChosenProductProps) {
                     name: chosenProduct.productName,
                     orgPrice: chosenProduct.productOrgPrice,
                     disPrice: chosenProduct.productDisPrice,
+                    size: chosenProduct.productSize,
+                    kidsSize: chosenProduct.productKidsSize,
+                    shoeSize: chosenProduct.productShoeSize,
+                    collection: chosenProduct.productCollection,
                     image: chosenProduct.productImages[0],
                   });
                 }}

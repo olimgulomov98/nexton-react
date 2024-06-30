@@ -84,6 +84,14 @@ export default function Products(props: ProductsProps) {
     setProductSearch({ ...productSearch });
   };
 
+  const searchAllProductsHandler = () => {
+    setProductSearch({
+      ...productSearch,
+      page: 1,
+      productCollection: undefined,
+    });
+  };
+
   const searchProductHandler = () => {
     productSearch.search = searchText;
     setProductSearch({ ...productSearch });
@@ -142,6 +150,7 @@ export default function Products(props: ProductsProps) {
                     ? "primary"
                     : "secondary"
                 }
+                onClick={searchAllProductsHandler}
               >
                 All
               </Button>
@@ -285,6 +294,10 @@ export default function Products(props: ProductsProps) {
                               name: product.productName,
                               orgPrice: product.productOrgPrice,
                               disPrice: product.productDisPrice,
+                              size: product.productSize,
+                              kidsSize: product.productKidsSize,
+                              shoeSize: product.productShoeSize,
+                              collection: product.productCollection,
                               image: product.productImages[0],
                             });
                           }}

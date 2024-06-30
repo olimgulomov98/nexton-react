@@ -86,7 +86,6 @@ export default function Basket(props: BasketProps) {
         id="account-menu"
         open={open}
         onClose={handleClose}
-        // onClick={handleClose}
         PaperProps={{
           elevation: 0,
           sx: {
@@ -139,15 +138,25 @@ export default function Basket(props: BasketProps) {
                 return (
                   <Box className={"basket-info-box"} key={item._id}>
                     <img src={imagePath} className={"product-img"} alt="" />
-                    <span className={"product-name"}>{item.name}</span>
-                    <p className={"product-price"}>
-                      ${item.disPrice} x {item.quantity}
-                    </p>
+                    <div className="product-name-size">
+                      <span className={"product-name"}>{item.name}</span>
+                      <span className={"product-size"}>
+                        {item.collection === "KIDS"
+                          ? item.kidsSize
+                          : item.size && item.collection === "SHOES"
+                          ? item.shoeSize
+                          : item.size}
+                      </span>
+                    </div>
+                    <p className={"product-price"}>${item.disPrice}</p>
                     <Box sx={{ minWidth: 120 }}>
                       <div className="col-2">
                         <div className="remove">
                           <RemoveCircleIcon onClick={() => onRemove(item)} />
                         </div>{" "}
+                        <div className={"product-quantity"}>
+                          {item.quantity}
+                        </div>
                         <div className="add">
                           <AddCircleIcon onClick={() => onAdd(item)} />
                         </div>
@@ -166,9 +175,19 @@ export default function Basket(props: BasketProps) {
           </Box>
           {cardItems.length !== 0 ? (
             <Box className={"basket-order"}>
-              <span className={"price"}>
-                Total: ${totalPrice} ({itemsPrice} + {shippingCost})
-              </span>
+              <Box className={"price-wrapper"}>
+                <span className={"price-title"}>Item Price: </span>
+                <span className={"price"}>${itemsPrice}</span>
+              </Box>
+              <div className={"price-wrapper"}>
+                <span className={"price-title"}>Delivery Fee: </span>
+                <span className={"price"}>${shippingCost}</span>
+              </div>
+              <div className={"price-wrapper"}>
+                <span className={"price-title"}>Total Price: </span>
+                <span className={"price"}>${totalPrice}</span>
+              </div>
+
               <Button
                 onClick={proceedOrderHandler}
                 startIcon={<ShoppingCartIcon />}

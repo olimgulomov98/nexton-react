@@ -21,7 +21,7 @@
 
 .homepage .popular-products-frame .popular-section .category-title {
   text-align: center;
-  font-family: "Roboto Serif";
+  font-family: "Comic Sans MS";
   font-size: 36px;
   font-style: normal;
   font-weight: 600;
@@ -79,7 +79,7 @@
 }
 
 .homepage .fashion-frame .category-title {
-  font-family: "Dancing Script";
+  font-family: "Comic Sans MS";
   font-style: normal;
   font-weight: 700;
   font-size: 36px;
@@ -243,7 +243,7 @@
 }
 
 .homepage .active-users-frame .category-title {
-  font-family: "Dancing Script";
+  font-family: "Comic Sans MS";
   font-style: normal;
   font-weight: 700;
   font-size: 36px;
@@ -262,6 +262,7 @@
   width: 305px;
   cursor: pointer;
   border-color: #f8f8ff;
+  box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .homepage .active-users-frame .main .cards-frame .card .card-detail {
@@ -275,13 +276,13 @@
 
 .homepage .active-users-frame .main .cards-frame .card .member-nickname {
   text-align: center;
-  font-family: "Roboto Serif";
+  font-family: "Comic Sans MS";
   font-style: normal;
   font-weight: 600;
   color: #000;
 }
 .homepage .active-users-frame .main .cards-frame .card .member-phone {
-  font-family: "Roboto Serif";
+  font-family: "Comic Sans MS";
   font-style: normal;
   font-weight: 500;
   color: #000;

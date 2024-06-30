@@ -152,7 +152,7 @@
   .products-wapper
   .product-card
   .product-img {
-  height: 100%;
+  width: 100%;
   height: 300px;
   background-repeat: no-repeat;
   background-size: cover;
@@ -178,10 +178,12 @@
   .products-wapper
   .product-card
   .product-img:hover {
-  transition: all 1s;
+  transition: all 0.5s;
   filter: brightness(90%);
   z-index: 0;
   cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  height: 310px;
 }
 
 .products-page .products .list-category-section .products-wapper .product-desc {
@@ -471,6 +473,7 @@
 }
 
 .products-page .chosen-product .chosen-product-info .info-box {
+  position: relative;
   width: 100%;
   height: auto;
   display: flex;
@@ -528,7 +531,7 @@
 }
 
 .products-page .chosen-product .info-box .product-desc {
-  height: 112px;
+  height: 100px;
   margin-top: 30px;
   margin-bottom: 30px;
   font-family: "Poppins";
@@ -537,6 +540,20 @@
   font-size: 18px;
   line-height: 22px;
   color: #000000;
+}
+
+.products-page .chosen-product .info-box .product-size {
+  position: absolute;
+  right: 0;
+  width: 120px;
+  height: 40px;
+  background: #111828;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  color: #fff;
 }
 
 .products-page .chosen-product .info-box .product-price {

@@ -75,9 +75,9 @@ export default function OrdersPage() {
                   aria-label="basic tabs example"
                   className={"table_list"}
                 >
-                  <Tab label="PAUSED ORDERS" value={"1"} />
-                  <Tab label="PROCESS ORDERS" value={"2"} />
-                  <Tab label="FINISHED ORDERS" value={"3"} />
+                  <Tab label="PAUSED ORDERS" value={"1"} color="secondary" />
+                  <Tab label="PROCESS ORDERS" value={"2"} color="secondary" />
+                  <Tab label="FINISHED ORDERS" value={"3"} color="secondary" />
                 </Tabs>
               </Box>
             </Box>

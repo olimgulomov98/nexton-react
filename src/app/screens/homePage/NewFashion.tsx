@@ -74,7 +74,7 @@ export default function NewFashion() {
                         <VisibilityIcon
                           sx={{
                             fontSize: 22,
-                            marginLeft: "5px",
+                            marginRight: "5px",
                           }}
                         />
                         {product.productViews}
