@@ -6,7 +6,6 @@ import CardContent from "@mui/joy/CardContent";
 import Typography from "@mui/joy/Typography";
 import { CssVarsProvider } from "@mui/joy";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { retrievePopularClothes } from "./selector";

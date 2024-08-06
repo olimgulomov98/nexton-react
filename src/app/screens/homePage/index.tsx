@@ -11,7 +11,6 @@ import { Dispatch } from "@reduxjs/toolkit";
 import { setNewFashion, setPopularClothes, setTopUsers } from "./slice";
 import { Product } from "../../../libs/types/product";
 import ProductService from "../../services/ProductService";
-import { ProductCollection } from "../../../libs/enums/product.enum";
 import MemberService from "../../services/MemberService";
 import { Member } from "../../../libs/types/member";
 

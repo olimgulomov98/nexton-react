@@ -4,7 +4,6 @@ import Typography from "@mui/joy/Typography";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
-
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { retrieveNewFashion } from "./selector";

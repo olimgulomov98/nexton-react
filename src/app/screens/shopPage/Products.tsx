@@ -341,7 +341,7 @@ export default function Products(props: ProductsProps) {
                   );
                 })
               ) : (
-                <Box className="no-data">Product are not aviable!</Box>
+                <Box className="no-data">Product is not available!</Box>
               )}
             </Stack>
           </Stack>
