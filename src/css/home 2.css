@@ -1,0 +1,354 @@
+.homepage {
+  width: 100%;
+  height: auto;
+}
+
+/** POPULAR CLOTHES **/
+
+.homepage .popular-products-frame {
+  width: 100%;
+  height: 580px;
+  display: flex;
+  background: #f8f8ff;
+}
+
+.homepage .popular-products-frame .popular-section {
+  margin-top: 45px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.homepage .popular-products-frame .popular-section .category-title {
+  text-align: center;
+  font-family: "Comic Sans MS";
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 1.44px;
+  color: #000;
+}
+
+.homepage .popular-products-frame .popular-section .cards-frame {
+  width: 100%;
+  margin-top: 43px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.homepage .popular-products-frame .cards-frame .card {
+  min-height: 430px;
+  min-width: 300px;
+  cursor: pointer;
+}
+
+.homepage .popular-products-frame .cards-frame .card .card-cover {
+  background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0) 200px
+    ),
+    linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0) 300px);
+}
+
+.homepage .popular-products-frame .no-data {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: capitalize;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 34px;
+  color: #111828;
+}
+
+/** NEW FASHION **/
+
+.homepage .fashion-frame {
+  width: 100%;
+  height: 745px;
+  background: #f8f8ff;
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.homepage .fashion-frame .category-title {
+  font-family: "Comic Sans MS";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 43px;
+  margin: 50px 0;
+}
+
+.homepage .fashion-frame .fashion-main {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.homepage .fashion-frame .fashion-main .fashion-info {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.homepage .fashion-frame .fashion-info .fashion-info-frame {
+  position: relative;
+  width: 500px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.homepage .fashion-frame .fashion-img {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  border-radius: 10px;
+  background-size: cover;
+}
+
+.homepage .fashion-frame .fashion-desc {
+  position: absolute;
+  margin-bottom: 7px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  height: auto;
+  bottom: 5px;
+  box-shadow: 0px 40px 30px rgba(25, 25, 46, 0.04);
+  border-radius: 8px;
+  background: linear-gradient(rgb(228, 220, 220), rgb(195, 195, 184));
+}
+
+.homepage .fashion-frame .fashion-desc .fashion-desc-title {
+  font-family: "Dancing Script";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 22px;
+  color: #111828;
+}
+
+.homepage .fashion-frame .fashion-desc .fashion-desc-type {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 20px;
+  color: #111828;
+  margin-top: 10px;
+}
+
+.homepage .fashion-frame .fashion-desc .fashion-desc-price {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 22px;
+  color: #111828;
+}
+
+.homepage .fashion-frame .fashion-desc .fashion-desc-views {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 20px;
+  color: #111828;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.homepage .fashion-frame .fashion-main .prev-next-frame {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  margin: 40px 0 40px 0;
+  height: 25px;
+}
+
+.homepage .fashion-frame .dot-frame-pagination {
+  position: relative;
+  width: auto;
+  display: flex;
+}
+
+.homepage .fashion-frame .swiper-pagination-bullet {
+  margin-right: 5px;
+  width: 8px;
+  height: 8px;
+  text-align: center;
+  opacity: 1;
+  background: #f8f8ff;
+  border-radius: 50%;
+}
+
+.homepage .fashion-frame .swiper-pagination-bullet-active {
+  background: #343434;
+  border-radius: 50%;
+}
+
+/** ADVERTISEMENT **/
+
+.homepage .ads-restaurant-frame {
+  width: 100%;
+  height: 693px;
+  display: flex;
+  overflow: hidden;
+  transform: perspective(0px);
+  box-shadow: -3px 0px 20px 14px #34343480;
+}
+
+.homepage .ads-restaurant-frame .ads-video {
+  width: 100%;
+  background: #0c0e12;
+  display: flex;
+  box-shadow: 0px -8px 90px rgb(215 215 255);
+  transform: scale(1.5);
+  overflow: hidden;
+}
+
+/** ACTIVE USERS **/
+
+.homepage .active-users-frame {
+  width: 100%;
+  height: 550px;
+  background: #f8f8ff;
+  display: flex;
+}
+
+.homepage .active-users-frame .main {
+  margin-top: 93px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.homepage .active-users-frame .category-title {
+  font-family: "Comic Sans MS";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 43px;
+}
+
+.homepage .active-users-frame .main .cards-frame {
+  width: 100%;
+  margin: 47px 2px 2px 2px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.homepage .active-users-frame .main .cards-frame .card {
+  height: auto;
+  width: 305px;
+  cursor: pointer;
+  border-color: #f8f8ff;
+  box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.homepage .active-users-frame .main .cards-frame .card .card-detail {
+  width: auto;
+  height: 49%;
+  display: flex;
+  justify-content: center;
+  margin-top: -10px;
+  background-color: #fff;
+}
+
+.homepage .active-users-frame .main .cards-frame .card .member-nickname {
+  text-align: center;
+  font-family: "Comic Sans MS";
+  font-style: normal;
+  font-weight: 600;
+  color: #000;
+}
+.homepage .active-users-frame .main .cards-frame .card .member-phone {
+  font-family: "Comic Sans MS";
+  font-style: normal;
+  font-weight: 500;
+  color: #000;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.homepage .active-users-frame .no-data {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: capitalize;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 34px;
+  color: #e3c08d;
+}
+
+/** Article **/
+
+.article-frame {
+  width: 100%;
+  height: auto;
+  background: #f8f8ff;
+  display: flex;
+  justify-content: center;
+}
+
+.article-frame .article-main {
+  width: 100%;
+  height: auto;
+  margin: 50px 0;
+  border-radius: 20px;
+}
+
+.article-frame .article-right {
+  width: 50%;
+  height: auto;
+  background-color: #f5f5f5;
+  padding-top: 50px;
+  padding-left: 60px;
+}
+
+.article-frame .article-right .btn {
+  width: 100px;
+  height: 50px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.article-frame .article-right .btn a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.article-frame .article-left {
+  width: 50%;
+  height: 440px;
+  box-sizing: border-box;
+  background: url("/public/img/bg-image.png");
+  background-repeat: no-repeat;
+}
